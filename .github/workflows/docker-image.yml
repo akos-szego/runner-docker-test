@@ -7,5 +7,13 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-    - name: Run a one-line script
-      run: docker run --rm mcr.microsoft.com/dotnet/framework/samples:dotnetapp
+    - name: Login to GitHub Container Registry
+      run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u username --password-stdin
+    - name: Download container Image
+      run: docker pull mcr.microsoft.com/dotnet/framework/samples:dotnetapp
+    - name: Tag image
+      run: docker tag mcr.microsoft.com/dotnet/framework/samples:dotnetapp ghcr.io/akos-szego/dotnetapp
+    - name: Push image to GitHub Container Registry
+      run: docker push ghcr.io/akos-szego/dotnetapp
+    # - name: Run a one-line script
+    #   run: docker run --rm mcr.microsoft.com/dotnet/framework/samples:dotnetapp
