@@ -1,0 +1,13 @@
+name: Docker Image CI
+
+on:
+  workflow_dispatch:   
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - name: Login to GitHub Container Registry
+      run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u username --password-stdin
+    - name: Run a one-line script
+      run: docker run --rm mcr.microsoft.com/dotnet/framework/samples:dotnetapp

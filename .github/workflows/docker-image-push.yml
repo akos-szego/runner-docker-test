@@ -15,5 +15,3 @@ jobs:
       run: docker tag mcr.microsoft.com/dotnet/framework/samples:dotnetapp ghcr.io/akos-szego/dotnetapp
     - name: Push image to GitHub Container Registry
       run: docker push ghcr.io/akos-szego/dotnetapp
-    # - name: Run a one-line script
-    #   run: docker run --rm mcr.microsoft.com/dotnet/framework/samples:dotnetapp
